@@ -27,5 +27,40 @@ public class StatsService {
     public long averageSales (long[] sales) {
          return allSum(sales) / 12;
     }
+// месяц мак суммы продаж
+    public int maxSales(long[] sales) {
+        int maxMonth = 0;
+        int month = 0;
+        for (long sale : sales) {
+            if (sale >= sales[maxMonth]) {
+                maxMonth = month;
+            }
+            month = month + 1;
+        }
+        return maxMonth + 1;
+    }
+// месяцы, когда продажи были ниже среднего
 
+    public int averageMinSales(long[] sales) {
+        long averageAmountMin = averageSales(sales);
+        int aveMinSales = 0;
+        for (long sale : sales) {
+            if (sale < averageAmountMin){
+                aveMinSales++;
+            }
+        }
+        return aveMinSales;
+    }
+// месяцы, когда продажи были выше среднего
+
+    public int averageMaxSales(long[] sales) {
+        long averageAmountMax = averageSales(sales);
+        int aveMaxSales = 0;
+        for (long sale : sales) {
+            if (sale > averageAmountMax){
+                aveMaxSales++;
+            }
+        }
+        return aveMaxSales;
+    }
 }
